@@ -3,11 +3,12 @@ const createfood = require("./createFood");
 module.exports = function(app)
 {
     //Starting page for the website
-    app.get("/food", function(req, res)
+    app.get("/food", async function(req, res)
     {
         try
         {
-            res.send("this is food");
+            let food = await app.food.find().toArray();
+            res.send(food);
 
         }
         catch(error)
