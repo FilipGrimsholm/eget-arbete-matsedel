@@ -1,0 +1,9 @@
+.dish
+{
+    background-color: #f2f2f2;
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    margin: 10px;
+    float: left;
+}

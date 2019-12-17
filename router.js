@@ -1,4 +1,6 @@
 const createfood = require("./createFood");
+const render = require("./html");
+const objectId = require("mongodb").ObjectID;
 
 module.exports = function(app)
 {
@@ -14,17 +16,17 @@ module.exports = function(app)
             let html = food.map(function(dish)
             {
                 return `
-                    <h1>${dish.name}</h1>
-                    <p>${dish.foodtype}</p>
-                    <p>${dish.price}</p>
+                    <div class = "dish">
+                        <h1>${dish.name}</h1>
+                        <p>${dish.foodtype}</p>
+                        <p>${dish.price}</p>
+                        <a onclick = "return checkRemove()" href = "/food/delete/${dish._id}"><button>Delete</button></a>
+                    </div>
                 `
-              
-                
             });
 
             //Sends the data to the website
-            console.log(html);
-            res.send(html.join(''));
+            res.send(render(html.join('')));
         }
         catch(error)
         {
@@ -45,7 +47,7 @@ module.exports = function(app)
             res.send("no form");
         }
     });
-    //Here you create new food
+    //Here you create new food and then send it to the database
     app.post("/food/makefood", async function(req, res)
     {
         try
@@ -56,6 +58,20 @@ module.exports = function(app)
         catch(error)
         {
             res.send("no data is saved");
+        }
+    });
+    //route for deleting indivdual food objects
+    app.get("/food/delete/:id", async function(req, res)
+    {
+        try 
+        {
+            let id = req.params.id;
+            await app.food.deleteOne({_id:objectId(id)});
+            res.redirect("/food");
+        } 
+        catch (error) 
+        {
+            res.send(error.message);
         }
     });
 }
