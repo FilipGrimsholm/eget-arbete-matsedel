@@ -5,5 +5,46 @@
     height: 200px;
     padding: 20px;
     margin: 10px;
-    float: left;
+    border-right: orange 3px solid;
+}
+header
+{
+    background-color: teal;
+    margin: 10px;
+}
+#fliklista
+{
+    padding: 10px;
+    display: flex;
+}
+.flik
+{
+    list-style-type: none;
+    padding: 10px;
+    margin-right: 10px;
+    flex: 1;
+    border-right: orange 3px solid;
+    background-color: #f2f2f2;
+}
+
+.flik, .fliklänk
+{
+    color: black;
+    text-decoration: none;
+}
+
+.flik:hover
+{
+    background-color: #e2dddd
+}
+
+#extralink
+{
+    flex: 7;
+    background-color: teal;
+    border: none;
+}
+main
+{
+    display: flex;
 }

@@ -11,20 +11,20 @@ module.exports = function(data)
             <title>Food app</title>
         </head>
         <body>
-            ${data}
-            <script>
-                function checkRemove()
-                {
-                    if(confirm("Vill du verkligen ta bort denna maträtten?"))
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            </script>
+            <header>
+                <h1 id = "title"></h1>
+                <ul id = "fliklista">
+                    <li class = "flik"><a class = "fliklänk" href = "/food">See your food</a></li>
+                    <li class = "flik"><a class = "fliklänk" href = "/food/makefood">Create new food</a></li>
+                    <li class = "flik"><a class = "fliklänk">Food paper</a></li>
+                    <li class = "flik"><a class = "fliklänk">About</a></li>
+                    <li class = "flik" id = "extralink"><a class = "fliklänk"></a></li>
+                </ul>                                       
+            </header>
+            <main>
+                ${data}
+            </main>
+        <script src = "client.js"></script>
         </body>
     </html>
     `

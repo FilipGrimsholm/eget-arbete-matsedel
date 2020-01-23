@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require("express")
 const mongo = require("mongodb").MongoClient;
 const conString = "mongodb+srv://Filip_G:oMuVJNtxi001gJ9X@cluster0-unzz6.mongodb.net/test?retryWrites=true&w=majority";
 let app;
@@ -12,15 +12,15 @@ async function makeConnection(){
     //Skapar en databas som heter db
     const db = await con.db("food-ab");
 
-    //skapar en collection som heter food om den inte existerar
+    //Lägger till ett document i collectionen col som heter food
     const col = await db.collection("food");
     
     // nu vet vi att vi har en uppkoppling till vår DB så att vi kan starta vår applikation
     app = express();
-    app.use(express.static(__dirname + "/public"));
     
     // middleware för att kunna parsa req.body 
     app.use(express.urlencoded({extended:false}));
+    app.use(express.static(__dirname + "/public"));
     app.listen(3500, function(){console.log("port: 3500")});
 
     // lägg kopplingen till vår kollektion till vårt app-objekt så att vi kan använda det om och om igen
