@@ -10,7 +10,9 @@ module.exports = function(app)
     {
         try
         {
-            res.send("Test");
+            let title = "<h1>Welcome to my webpage! We are glad to see you here!</h1>"
+            let text = "test"
+            res.send(render(text, title));
         }
         catch(error)
         {
@@ -32,7 +34,7 @@ module.exports = function(app)
                     <div class = "dish">
                         <h1>${dish.name}</h1>
                         <p>${dish.foodtype}</p>
-                        <p>${dish.price}</p>
+                        <p>${dish.price} kr</p>
                         <a onclick = "return checkRemove()" href = "/food/delete/${dish._id}"><button>Delete</button></a>
                         <a onclick = "return checkEdit()" href = "/food/edit/${dish._id}"><button>Edit</button></a>
                     </div>
@@ -40,7 +42,7 @@ module.exports = function(app)
             });
 
             //Sends the data to the website
-            res.send(render(foodlist.join('')));
+            res.send(render(foodlist.join(''), "<h1>Here are your food!</h1>"));
         }
         catch(error)
         {
@@ -54,7 +56,7 @@ module.exports = function(app)
         try
         {
             let form = createfood();
-            res.send(render(form));
+            res.send(render(form, "<h1>Make your food!</h1>"));
         }
         catch(error)
         {
@@ -91,10 +93,11 @@ module.exports = function(app)
     //route for editing individual food objects
     app.get("/food/edit/:id", async function(req, res)
     {
-        try
+        try                             
         {
             let id = req.params.id;
-            let form = editfood(id.name, id.foodtype, id.price);
+            let food = await app.food.findOne({_id:objectId(id)})
+            let form = editfood(food.name, food.foodtype, food.price, id);
             res.send(render(form));
         }
         catch(error)
@@ -102,11 +105,14 @@ module.exports = function(app)
             res.send(error.message);
         }
     });
-    app.post("food/edit/:id", async function(req, res)
+    app.post("/food/edit/:id", async function(req, res)
     {
         try
         {
-            await app.food.insertOne(req.body);
+            let id = req.params.id;
+            let newvalues ={$set:req.body};
+            await app.food.updateOne({_id:objectId(id)}, newvalues);
+
             res.redirect("/food");
         }
         catch(error)

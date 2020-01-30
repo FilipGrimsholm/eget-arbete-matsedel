@@ -34,8 +34,8 @@ async function makeConnection(){
 Steg 1: Fixa en uppkoppling (klart)
 Steg 2: Visa matobjekt på webben (klart)
 Steg 3: Kunna Skapa ett matobjekt (klart)
-Steg 4: Kunna ändra matojekten 
-Steg 5: Kunna ta bort ett matobjekt
+Steg 4: Kunna ändra matojekten (klart)
+Steg 5: Kunna ta bort ett matobjekt (klart)
 Steg 6: Kunna infoga en bild på maträtten
 Steg 7: Inloggning och utloggning?
 */

@@ -10,7 +10,6 @@
 header
 {
     background-color: teal;
-    margin: 10px;
 }
 #fliklista
 {
@@ -44,7 +43,31 @@ header
     background-color: teal;
     border: none;
 }
+
+h1
+{
+    margin: auto;
+}
+
+body
+{
+    width: 100%;
+}
+
 main
 {
     display: flex;
+    flex-direction: column;
+}
+
+#title
+{
+    flex: 1;
+    margin: auto;
+}
+
+#data
+{
+    flex: 1;
+    padding: 10px;
 }
