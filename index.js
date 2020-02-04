@@ -1,5 +1,6 @@
 const express = require("express")
 const mongo = require("mongodb").MongoClient;
+require("dotenv").config();
 const conString = "mongodb+srv://Filip_G:oMuVJNtxi001gJ9X@cluster0-unzz6.mongodb.net/test?retryWrites=true&w=majority";
 let app;
 makeConnection();

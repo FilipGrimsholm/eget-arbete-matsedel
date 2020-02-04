@@ -3,7 +3,7 @@ const createfood = require("./createFood");
 const editfood = require("./editfood");
 const render = require("./html");
 const objectId = require("mongodb").ObjectID;
-
+console.log(process.env.FG);
 module.exports = function(app)
 {
     app.get("/", async function(req, res)
